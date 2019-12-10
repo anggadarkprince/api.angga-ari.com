@@ -113,7 +113,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function educations()
     {
-        return $this->hasManyThrough(Education::class, Profile::class);
+        return $this->hasManyThrough(Education::class, Profile::class)
+            ->orderBy('start_date', 'desc');
     }
 
     /**
@@ -121,7 +122,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function experiences()
     {
-        return $this->hasManyThrough(Experience::class, Profile::class);
+        return $this->hasManyThrough(Experience::class, Profile::class)
+            ->orderBy('start_date', 'desc');
     }
 
     /**

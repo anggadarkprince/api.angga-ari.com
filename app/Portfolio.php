@@ -17,6 +17,13 @@ class Portfolio extends Model
     ];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['laravel_through_key'];
+
+    /**
      * Get all of the images's portfolio.
      */
     public function medias()

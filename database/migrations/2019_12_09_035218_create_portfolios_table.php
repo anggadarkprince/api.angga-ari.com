@@ -20,9 +20,9 @@ class CreatePortfoliosTable extends Migration
             $table->text('description')->nullable(true);
             $table->string('category')->nullable(true);
             $table->string('platform')->nullable(true);
-            $table->string('organization');
+            $table->string('organization')->nullable(true);
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable(true);
             $table->timestamps();
 
             $table->foreign('profile_id')->references('id')->on('profiles')
