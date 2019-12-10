@@ -3,17 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\JsonResponse;
 
 class SkillController extends Controller
 {
-    public function index(User $user)
+    /**
+     * Get skill profile.
+     *
+     * @param $username
+     * @return JsonResponse
+     */
+    public function index($username)
     {
-        $skills = $user->first()->profile->skills()->where('skill_id', null)->with('expertise')->get();
+        $user = User::where('username', $username)->first();
+        $skills = $user->profile->skills()->select(['skills.id', 'expertise AS group', 'description'])->where('is_group', true)->with('expertise')->get();
 
         if ($skills->isEmpty()) {
-            $skills = $user->first()->profile->skills;
+            $skills = $user->profile->skills;
+            $isGrouped = 0;
+        } else {
+            $isGrouped = 1;
         }
 
-        return response()->json($skills);
+        return response()->json([
+            'is_grouped' => $isGrouped,
+            'skills' => $skills
+        ]);
     }
 }

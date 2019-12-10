@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\JsonResponse;
 
 class PortfolioController extends Controller
 {
-    public function index(User $user)
+    /**
+     * Get portfolio profile.
+     *
+     * @param $username
+     * @return JsonResponse
+     */
+    public function index($username)
     {
-        $portfolios = $user->first()->profile->porfolio;
+        $portfolios = User::where('username', $username)->first()->profile->porfolio;
 
         return response()->json($portfolios);
     }

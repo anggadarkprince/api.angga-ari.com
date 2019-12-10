@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\JsonResponse;
 
 class AchievementController extends Controller
 {
-    public function index(User $user)
+    /**
+     * Get achievement profile.
+     *
+     * @param $username
+     * @return JsonResponse
+     */
+    public function index($username)
     {
-        $achievements = $user->first()->profile->achievements;
+        $achievements = User::where('username', $username)->first()->profile->achievements;
 
         return response()->json($achievements);
     }

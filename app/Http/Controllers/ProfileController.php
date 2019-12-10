@@ -3,25 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\JsonResponse;
 
 class ProfileController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
-    public function index(User $user)
+    /**
+     * Get account profile.
+     *
+     * @param $username
+     * @return JsonResponse
+     */
+    public function index($username)
     {
-        $profile = $user->with([
+        $profile = User::where('username', $username)->with([
             'profile.emails', 'profile.phones', 'profile.socials', 'profile.websites',
             'educations', 'experiences', 'skills.expertise', 'portfolios', 'achievements'
-        ])->first();
+        ])->firstOrFail();
 
         return response()->json($profile);
     }

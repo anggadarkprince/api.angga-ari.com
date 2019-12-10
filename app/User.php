@@ -139,7 +139,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasManyThrough(Skill::class, Profile::class)
             ->select(['skills.id', 'expertise AS group', 'description'])
-            ->where('skill_id', null);
+            ->where('is_group', true);
     }
 
     /**
