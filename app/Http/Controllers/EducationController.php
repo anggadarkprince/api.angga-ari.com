@@ -15,7 +15,7 @@ class EducationController extends Controller
      */
     public function index($username)
     {
-        $educations = User::where('username', $username)->first()->profile->educations;
+        $educations = User::where('username', $username)->firstOrFail()->profile->educations;
 
         return response()->json($educations);
     }

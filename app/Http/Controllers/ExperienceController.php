@@ -15,7 +15,7 @@ class ExperienceController extends Controller
      */
     public function index($username)
     {
-        $educations = User::where('username', $username)->first()->profile->experiences;
+        $educations = User::where('username', $username)->firstOrFail()->profile->experiences;
 
         return response()->json($educations);
     }

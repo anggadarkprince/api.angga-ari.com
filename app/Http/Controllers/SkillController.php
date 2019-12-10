@@ -16,7 +16,7 @@ class SkillController extends Controller
      */
     public function index($username)
     {
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)->firstOrFail();
         $skills = $user->profile->skills()->select(['skills.id', 'expertise AS group', 'description'])->where('is_group', true)->with('expertise')->get();
 
         if ($skills->isEmpty()) {

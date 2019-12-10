@@ -15,7 +15,7 @@ class AchievementController extends Controller
      */
     public function index($username)
     {
-        $achievements = User::where('username', $username)->first()->profile->achievements;
+        $achievements = User::where('username', $username)->firstOrFail()->profile->achievements;
 
         return response()->json($achievements);
     }
