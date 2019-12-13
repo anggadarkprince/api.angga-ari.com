@@ -15,7 +15,7 @@ class PortfolioController extends Controller
      */
     public function index($username)
     {
-        $portfolios = User::where('username', $username)->firstOrFail()->profile->porfolio;
+        $portfolios = User::where('username', $username)->firstOrFail()->profile->portfolios()->with('medias')->get();
 
         return response()->json($portfolios);
     }
