@@ -22,7 +22,7 @@ class Education extends Model
      *
      * @var array
      */
-    protected $hidden = ['laravel_through_key', 'profile_id', 'id'];
+    protected $hidden = ['laravel_through_key', 'profile_id'];
 
     /**
      * Get the profile that owns the education.
