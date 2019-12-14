@@ -45,7 +45,7 @@ class Profile extends Model
      */
     public function experiences()
     {
-        return $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class)->orderBy('start_date', 'desc');
     }
 
     /**

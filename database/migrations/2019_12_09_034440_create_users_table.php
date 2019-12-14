@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('status', ['PENDING', 'ACTIVATED', 'SUSPENDED'])->default('PENDING');
             $table->string('password');
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });
