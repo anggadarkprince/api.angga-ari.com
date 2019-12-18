@@ -147,6 +147,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     /**
      * Get all of the skills for the profile.
      */
+    public function expertise()
+    {
+        return $this->hasManyThrough(Skill::class, Profile::class)
+            ->where('is_group', false);
+    }
+
+    /**
+     * Get all of the skills for the profile.
+     */
     public function portfolios()
     {
         return $this->hasManyThrough(Portfolio::class, Profile::class);

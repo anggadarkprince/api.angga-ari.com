@@ -21,6 +21,8 @@ class CreateSkillsTable extends Migration
             $table->text('description')->nullable(true);
             $table->integer('level')->nullable(true);
             $table->string('is_group');
+            $table->string('icon')->nullable(true);
+            $table->boolean('is_primary')->default(0);
             $table->timestamps();
 
             $table->foreign('profile_id')->references('id')->on('profiles')

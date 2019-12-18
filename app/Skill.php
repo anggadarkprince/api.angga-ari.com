@@ -37,7 +37,7 @@ class Skill extends Model
     public function expertise()
     {
         return $this->hasMany(Skill::class)
-            ->select(['id', 'skill_id', 'expertise', 'description', 'level']);
+            ->select(['id', 'skill_id', 'expertise', 'description', 'level', 'icon', 'is_primary']);
     }
 
 }
